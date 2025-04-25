@@ -27,20 +27,52 @@ import { computed, ref } from 'vue';
    <section class="faixa">
   <div>
     <ul>
-        <li>
+        <li class="borda">
          <p><img src="/img/caminhao.png" alt="caminhao">Frete grátis para SC</p> 
         </li>
-        <li>
+        <li class="borda">
             <p><img src="/img/estrela.png" alt="estrela">Livros recomendados</p>
         </li>
         <li>
-            <p><img src="/img/livro.png" alt="">Mais vendidos</p>
+            <p><img src="/img/livro.png" alt="livro">Mais vendidos</p>
         </li>
     </ul>
   </div>
-  <p>
-        kkkkkkkkkkkk
-    </p>
+   </section>
+   <section class="lançamentos">
+    <div>
+      <h1>Lançamentos</h1>
+      <ul>
+        <li>
+          <p><img src="/img/vestido-amarelo.png" alt="vestido-amarelo"></p>
+          <h3>Chain of Iron: Volume 2</h3>
+          <p>Cassandra Clare</p>
+          <h3 class="coracao">R$23.24 <img src="/img/coracao.png" alt="coracao"></h3>
+          <button>compra</button>
+        </li>
+        <li>
+          <p><img src="/img/vestido-verde.png" alt="vestido-verde"></p>
+          <h3>Chain of Thorns</h3>
+          <p>Cassandra Clare</p>
+          <h3 class="coracao">R$23.24 <img src="/img/coracao.png" alt="coracao"></h3>
+          <button>compra</button>
+        </li>
+        <li>
+          <p><img src="/img/chicote.png" alt="chicote"></p>
+          <h3>City of Fallen Angels</h3>
+          <p>Cassandra Clare</p>
+          <h3 class="coracao">R$13.94 <img src="/img/coracao.png" alt="coracao"></h3>
+          <button>compra</button>
+        </li>
+        <li>
+          <p><img src="/img/anjo.png" alt="anjo"></p>
+          <h3>Nona the Ninth</h3>
+          <p>Cassandra Clare</p>
+          <h3 class="coracao">R$16.84 <img src="/img/coracao.png" alt="coracao"></h3>
+          <button>compra</button>
+        </li>
+      </ul>
+    </div>
    </section>
    </main>
  </body>
@@ -97,9 +129,17 @@ main section.faixa ul {
 }
 main section.faixa li{
     padding: 0px 50px 0px 0px;
+    margin: 0vw 5vw 0vw 5vw;
 }
+main section.faixa li.borda{
+    padding: 0px 50px 0px 0px;
+    margin: 0vw 5vw 0vw 5vw;
+    border-right: 1px solid rgba(147, 125, 194, 1);
+}
+
 main section.faixa li p {
     font-weight: bold;
+    font-size: 1rem;
     margin: 0px 30px 0px 0px;
 }
 main section.faixa li p img {
@@ -107,6 +147,51 @@ main section.faixa li p img {
     width: 20px;
    margin: 0px 10px 0px 0px;
 }
+/*/////////////////////////////
+         LANÇAMENTOS 
+/////////////////////////////*/
+main section.lançamentos div{
+  margin: 4vw 4vw 4vw 4vw;
+}
+main section.lançamentos div ul {
+  display: flex;
+  margin: 30px;
+}
+main section.lançamentos div p img  {
+  height:25vw ;
+  width: 17vw;
+}
+main section.lançamentos div h1{
+   font-weight: bold;
+}
+main section.lançamentos div ul li {
+  margin: 1vw 2vw 1vw 1vw;
+  list-style: none;
+}
+main section.lançamentos div ul li h3{
+  font-weight: bold;
+}
+main section.lançamentos div ul li p{
+  color: rgba(79, 76, 87, 1);
+}
+main section.lançamentos div ul li h3 img {
+ height: 17px;
+ width: 20px;
+ text-align: right;
+}
+main section.lançamentos div ul li h3.coracao{
+  justify-content: space-between;
+}
+main section.lançamentos div button{
+  height:5vw;
+  width:15vw;
+  font-size: 1rem;
+  border: 20px solid white;
+  background-color: rgba(39,174,96,1);
+  color: white;
+}
+
+
 
 </style>
 

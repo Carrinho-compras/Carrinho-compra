@@ -1,5 +1,34 @@
 <script setup>
-import { computed, ref } from 'vue';
+const lancamentos = [
+    {
+    id: "01",
+    titulo: "Chain of Iron: Volume 2",
+    autor: "Cassandra Clare",
+    preco :"R$23.24",
+    capa:"/img/vestido-amarelo.png",
+    },
+    {
+    id: "02",
+    titulo: "Chain of Thorns",
+    autor: "Cassandra Clare",
+    preco :"R$23.24",
+    capa:"/img/vestido-verde.png",
+    },
+    {
+    id: "03",
+    titulo: "City of Fallen Angels",
+    autor: "Cassandra Clare",
+    preco :"R$13.94",
+    capa:"/img/chicote.png",
+    },
+    {
+    id: "04",
+    titulo: "Nona the Ninth",
+    autor: "Cassandra Clare",
+    preco :"R$16.84",
+    capa:"/img/anjo.png",
+    },
+]
 </script>
 
 <template>
@@ -39,37 +68,19 @@ import { computed, ref } from 'vue';
     </ul>
   </div>
    </section>
-   <section class="lançamentos">
+   <section class="lançamen">
     <div>
-      <h1>Lançamentos</h1>
       <ul>
-        <li>
-          <p><img src="/img/vestido-amarelo.png" alt="vestido-amarelo"></p>
-          <h3>Chain of Iron: Volume 2</h3>
-          <p>Cassandra Clare</p>
-          <h3 class="coracao">R$23.24 <img src="/img/coracao.png" alt="coracao"></h3>
-          <button>compra</button>
-        </li>
-        <li>
-          <p><img src="/img/vestido-verde.png" alt="vestido-verde"></p>
-          <h3>Chain of Thorns</h3>
-          <p>Cassandra Clare</p>
-          <h3 class="coracao">R$23.24 <img src="/img/coracao.png" alt="coracao"></h3>
-          <button>compra</button>
-        </li>
-        <li>
-          <p><img src="/img/chicote.png" alt="chicote"></p>
-          <h3>City of Fallen Angels</h3>
-          <p>Cassandra Clare</p>
-          <h3 class="coracao">R$13.94 <img src="/img/coracao.png" alt="coracao"></h3>
-          <button>compra</button>
-        </li>
-        <li>
-          <p><img src="/img/anjo.png" alt="anjo"></p>
-          <h3>Nona the Ninth</h3>
-          <p>Cassandra Clare</p>
-          <h3 class="coracao">R$16.84 <img src="/img/coracao.png" alt="coracao"></h3>
-          <button>compra</button>
+        <li v-for="livro in lancamentos" :key="livro.id">
+         <p v-for="imagem in lancamentos" :key="imagem.id"></p>
+         <p> <img :src="livro.capa" alt="" width="200" height="200"></p>
+         <p>{{ capa }}</p>
+         <p class="titulo">{{ livro.titulo }}</p>
+         <p v-for="autor in lancamentos" :key="lancamentos.id"></p>
+         <p class="autor">{{ livro.autor }}</p>
+         <p v-for="numero in lancamentos" :key="numero.id"></p>
+         <p class="preco">{{ livro.preco }} <i class="fa-solid fa-heart"></i></p>
+         <button><a class="fa-solid fa-square-plus"></a> compra</button>
         </li>
       </ul>
     </div>

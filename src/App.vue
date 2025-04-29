@@ -54,7 +54,7 @@ header{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 2vw 0 2vw 0;
+    margin: 1vw 0 2vw 0;
     padding: 0 0 0.5vw 0;
     border-bottom: 1px solid #27AE60;
 }
@@ -84,16 +84,17 @@ header div.barra-de-pesquisa {
 header div.barra-de-pesquisa p {
     color: #B8B8B8;
     background-color: #F1F1F1;
-    padding:  0.9vw 25vw 0.9vw 1vw;
+    padding:  0.7vw 30vw 0.7vw 1vw;
     
 }
 header div.barra-de-pesquisa img {
     background-color: #F1F1F1;
-    padding:  0.9vw 1vw 0.9vw 0vw;
+    padding:  0.7vw 1vw 0.7vw 0vw;
 }
 header nav ul {
     list-style: none;
     display: flex;
+    margin: 0 5vw 0 0;
 }
 header nav ul li {
     margin: 0 1.1vw 0 1.1vw;

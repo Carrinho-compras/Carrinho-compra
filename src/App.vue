@@ -5,28 +5,56 @@ const lancamentos = [
     titulo: "Chain of Iron: Volume 2",
     autor: "Cassandra Clare",
     preco :"R$23.24",
-    capa:"/img/vestido-amarelo.png",
+    capa:"https://m.media-amazon.com/images/I/81IP261kwlL.jpg",
     },
     {
     id: "02",
     titulo: "Chain of Thorns",
     autor: "Cassandra Clare",
     preco :"R$23.24",
-    capa:"/img/vestido-verde.png",
+    capa:"https://m.media-amazon.com/images/I/91PtVqr8spL.jpg",
     },
     {
     id: "03",
     titulo: "City of Fallen Angels",
     autor: "Cassandra Clare",
     preco :"R$13.94",
-    capa:"/img/chicote.png",
+    capa:"https://m.media-amazon.com/images/I/81KL1LCy4bL._UF894,1000_QL80_.jpg",
     },
     {
     id: "04",
     titulo: "Nona the Ninth",
     autor: "Cassandra Clare",
     preco :"R$16.84",
-    capa:"/img/anjo.png",
+    capa:"https://m.media-amazon.com/images/I/81SiB5KufiL._UF894,1000_QL80_.jpg",
+    },
+    {
+    id: "05",
+    titulo: "Harlem Shuffle",
+    autor: "Colson Whitehead",
+    preco :"R$26.92",
+    capa:"https://m.media-amazon.com/images/I/81ZPFCh0xML.jpg",
+    },
+    {
+    id: "06",
+    titulo: "Two Old Women",
+    autor: "Velma Wallis",
+    preco :"R$13.95",
+    capa:"https://m.media-amazon.com/images/I/81Yo0MecUrL.jpg",
+    },
+    {
+    id: "07",
+    titulo: "Carrie Soto Is Back",
+    autor: "Taylor Jenkins Reid",
+    preco :"R$26.04",
+    capa:"https://thumb.spokesman.com/wdxMerykWELlZzs-g_JW0iILVis=/2500x2500/smart/media.spokesman.com/photos/2022/08/19/62fd217156308.image.jpg",
+    },
+    {
+    id: "08",
+    titulo: "Book Lovers",
+    autor: "Emily Henry",
+    preco :"R$15.81",
+    capa:"https://m.media-amazon.com/images/I/71Xy4AL7jKL._AC_UF1000,1000_QL80_.jpg",
     },
 ]
 </script>
@@ -68,8 +96,9 @@ const lancamentos = [
     </ul>
   </div>
    </section>
-   <section class="lançamen">
+   <section class="lançamentos">
     <div>
+        <h2>Lançamentos</h2>
       <ul>
         <li v-for="livro in lancamentos" :key="livro.id">
          <p v-for="imagem in lancamentos" :key="imagem.id"></p>
@@ -80,7 +109,7 @@ const lancamentos = [
          <p class="autor">{{ livro.autor }}</p>
          <p v-for="numero in lancamentos" :key="numero.id"></p>
          <p class="preco">{{ livro.preco }} <i class="fa-solid fa-heart"></i></p>
-         <button><a class="fa-solid fa-square-plus"></a> compra</button>
+         <button>compra</button>
         </li>
       </ul>
     </div>
@@ -160,49 +189,56 @@ main section.faixa li p img {
 }
 /*/////////////////////////////
          LANÇAMENTOS 
-/////////////////////////////*/
-main section.lançamentos div{
-  margin: 4vw 4vw 4vw 4vw;
-}
-main section.lançamentos div ul {
-  display: flex;
-  margin: 30px;
-}
-main section.lançamentos div p img  {
-  height:25vw ;
-  width: 17vw;
-}
-main section.lançamentos div h1{
-   font-weight: bold;
-}
-main section.lançamentos div ul li {
-  margin: 1vw 2vw 1vw 1vw;
-  list-style: none;
-}
-main section.lançamentos div ul li h3{
-  font-weight: bold;
-}
-main section.lançamentos div ul li p{
-  color: rgba(79, 76, 87, 1);
-}
-main section.lançamentos div ul li h3 img {
- height: 17px;
- width: 20px;
- text-align: right;
-}
-main section.lançamentos div ul li h3.coracao{
-  justify-content: space-between;
-}
-main section.lançamentos div button{
-  height:5vw;
-  width:15vw;
-  font-size: 1rem;
-  border: 20px solid white;
-  background-color: rgba(39,174,96,1);
-  color: white;
-}
+/////////////////////////////*/ 
 
-
+section.lançamentos h2{
+    margin: 4vw 6vw 4vw 10vw;
+    font-weight: bold;
+    font-size: 2rem;
+    color: black;
+}
+section.lançamentos ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin:4vw 7vw 4vw 6vw;
+}
+section.lançamentos li {
+    box-sizing: border-box;
+    width: 20%;
+    margin: 2vw 1vw 0vw 0;
+    padding: 0 1vw;
+    white-space: nowrap;
+    list-style: none;
+}
+section.lançamentos img{
+    width: 15vw;
+    height: 20vw;
+}
+section.lançamentos ul button{
+    padding: 10px 6vw 10px 6vw;
+    border: 1px solid rgba(39,174,96,1);
+    background-color:  rgba(39,174,96,1);
+    color:white;  
+}
+section.lançamentos li p{
+    margin: 8px;
+}
+section.lançamentos li p.titulo{
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+section.lançamentos li p.autor{
+    color: rgb(147, 146, 148);
+}
+section.lançamentos li p.preco{
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+section.lançamentos li p.preco i{
+    color : rgba(39,174,96,1);
+    margin: 0 0 0 6vw;
+}
 
 </style>
 

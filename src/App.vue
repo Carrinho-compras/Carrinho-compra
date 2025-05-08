@@ -15,13 +15,13 @@
             </div>
             <div class="contato">
                 <h2>Contato</h2>
-                <p> <img src="/img/Icon.png" alt="telefone-img"> +55 47 40045263 </p>
+                <p> <img src="/img/phone.png" alt="telefone-img"> +55 47 40045263 </p>
                 <p> <span class="fa-solid fa-clock"></span> 8h às 23h - Seg a Sex</p>
                 <p> <span class="fa-solid fa-envelope"></span> contato@ifbooks.com</p>
                 <ul>
-                    <li><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQfuHHe9EHCFcjCaFVsVQKwz6eIfccoIxApQ&s" alt="img-paypal"></li>
-                    <li><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRpnA2ApcYtLFB3m9foinEhb0I_T159HIkEJQ&s" alt="img-mastercard"></li>
-                    <li><img  class="img" src="https://img2.gratispng.com/20180522/apq/avqf1ih87.webp" alt="img-visa"></li>
+                    <li><img src="/img/Paypal-Logo.png" alt="img-paypal"></li>
+                    <li><img src="/img/MasterCard-Logo.png" alt="img-mastercard"></li>
+                    <li><img src="/img/VISA-Logo.png" alt="img-visa"></li>
                 </ul>
             </div>
         </div>
@@ -34,31 +34,35 @@
 footer{
     background: #27AE60;
     color: white;
-    padding: 0 0 3vw 0;
+    padding: 0 0 2vw 0;
 }
 footer div.informacoes{
     display: flex;
     justify-content: space-between;
+    border-bottom: 1px solid rgba(255, 255, 255, 1);
 }
 footer div{
-    padding: 2vw;
+    padding: 2vw 2vw 2vw 2vw;
+}
+footer div.informacoes div.redes-sociais{
+    margin: 0 0 0 6vw;
 }
 footer div.informacoes div.redes-sociais p{
-    padding: 0 0 0 3.2vw;
+    padding: 0 0 0.2vw 2.6vw;
     font-size: 1.3rem;
-    color: rgba(255, 255, 255, 0.8);
+    color: rgba(255, 255, 255, 1);
 }
 footer div.informacoes div.redes-sociais ul{
     list-style: none;
     display: flex; 
 }
 footer div.informacoes div.redes-sociais ul li span{
-    font-size: 1.6rem;
+    font-size: 1.8rem;
     padding: 10px;
     color: rgba(255, 255, 255, 1);
 }
-footer div.informacoes div.contato {
-    margin: 0 0 0 55vw;
+footer div.informacoes div.contato{
+    margin: 0 0 0 45vw;
 }
 footer div.informacoes div.contato h2{
     font-size: 1.3rem;
@@ -77,14 +81,20 @@ footer div.informacoes div.contato p span{
 footer div.informacoes div.contato ul{
     list-style: none;
     display: flex;
+    padding: 2vw 6vw 0 0 ;
+}
+footer div.informacoes div.contato ul li{
+    padding: 0 30px 0 0;
 }
 footer div.informacoes div.contato ul li img{
-   width: 100%;
-   height: 80%;
-   border-radius: 5px;
+   width: 120%;
+   height: 90%;
+   border-radius: 4px;
 }
-footer div.informacoes div.contato ul li img.img{
-    width: 30%;
-    height: 50%;
+footer p.direitos-autorais{
+    text-align: center;
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.6);
+    padding: 1.5vw 0 0 0;
 }
-</style>1
+</style>

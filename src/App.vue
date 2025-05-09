@@ -1,9 +1,8 @@
 <script setup>
-import { ref } from 'vue';
+import { ref  } from 'vue';
 
-/*
+
 const carrinho = ref([]);
-*/
 
 const lancamentos =ref ([
    {
@@ -63,22 +62,17 @@ const lancamentos =ref ([
    capa:"https://m.media-amazon.com/images/I/71Xy4AL7jKL._AC_UF1000,1000_QL80_.jpg",
    },
 ]);
-/*
+
 function adicionarlancamentos(book) {
    carrinho.value.push(book);
  }
-   */
-
-  /*  <ul>
-        <li v-for = "book in carrinho" :key="book.id">
-            <p><img src="book.capa" alt="" width="200" height="200">{{ capa }}</p>
-            <p>{{ book.autor }}</p>
-            <p>{{ book.titulo }}</p>
-            <p>{{ book.preco }}</p>
-        </li>
-       </ul>
-       */
-</script>
+ function removerlancamentos(book){ 
+   const index = carrinho.value.findIndex((p) => p.id == book.id);
+   if (index !== -1) {
+      carrinho.value.splice(index,1);
+   }
+ }
+ </script>
 
 <template>
 <body>
@@ -133,17 +127,12 @@ function adicionarlancamentos(book) {
         <button class="botao" @click="adicionarlancamentos(livro)">compra</button>
        </li>
      </ul>  
-     
-   
-
-
-     
    </div>
   </section>
   <section class="Carrinho">
    <div class="classificacao">
        <h2>Carrinho</h2>
-       <ul>
+       <ul class="tabela">
            <li>
                Título
            </li>
@@ -154,17 +143,24 @@ function adicionarlancamentos(book) {
                 Subtotal
            </li>
        </ul>
+       <ul class="compra">
+        <li v-for = "book in carrinho" :key="book.id">
+            <p><img :src="book.capa" alt="" width="150" height="200">{{ capa }}</p>
+            <p class="texto">{{ book.autor }} <br>
+            {{ book.titulo }}<br>
+            {{ book.preco }}
+            <button class="botao" @click="removerlancamentos(book)">-</button></p>
+        </li>
+       </ul>
        <p>
             <a href="#loja">Voltar para loja</a>
         </p>
    </div>
    <div class="total">
 <form>
- <fieldset>
-   <label for="name">
+ <label for="name">
  <input type="text" id="name" name="user_name">
 </label>
- </fieldset>
  <p>
     <input type="submit" value="Enviar Cupom">
  </p>
@@ -174,8 +170,6 @@ function adicionarlancamentos(book) {
   </main>
 </body>
 </template>
-
-
 <style scoped>
 
 
@@ -197,8 +191,6 @@ main section.inicio div.texto h2 {
 margin: 1vw 0vw 0vw 0vw;
 font-weight:bold;
 font-size: 3rem;
-
-
 }
 main section.inicio p.informacao{
 font-size: 1rem;
@@ -312,7 +304,7 @@ section.Carrinho div.classificacao h2 {
     font-weight: bold;
     margin-left: 10vw;
 }
-section.Carrinho div.classificacao ul{
+section.Carrinho div.classificacao ul.tabela{
     display: flex;
     list-style: none;
     margin-left: 10vw;
@@ -321,11 +313,18 @@ section.Carrinho div.classificacao ul{
     justify-content: space-between;
     border-bottom: 2px solid rgb(95, 219, 147);
 }
-section.Carrinho div.classificacao ul li {
+section.Carrinho div.classificacao ul.tabela li{
     font-size: 1.5;
     font-weight: bold;
     margin-bottom: 2vw;
     margin-top: 2vw;
+}
+section.Carrinho div.classificacao ul.compra li{
+   display: flex;
+}
+section.Carrinho div.classificacao ul.compra p{
+   margin : 20px 1vw 20px 10vw;
+   font-weight: bold;
 }
 section.Carrinho div.classificacao a{
     color: black;
@@ -333,12 +332,24 @@ section.Carrinho div.classificacao a{
     border: 1px solid black;
     border-radius: 3px;
     padding: 10px 20px 10px 20px;
-}
-section.Carrinho div.classificacao p {
+}section.Carrinho div.classificacao p {
     margin: 5vw 10vw 5vw 10vw;
 }
 section.Carrinho div.total form {
     display: flex;
-    margin: 2vw 10vw 2vw 10vw ;
+}
+section.Carrinho div.total form p input{
+   border: none;
+   padding: 1vw 2vw 1vw 2vw;
+   margin: 1vw 1vw 1vw 2vw;
+   border-radius: 2px;
+   background-color: rgba(39,174,96,1); 
+   color: white;
+}
+section.Carrinho div.total form label input{
+ border-radius: 2px;
+ border-color: black;
+ padding:1vw 2vw 1vw 2vw;
+ margin: 1vw 1vw 1vw 2vw;
 }
 </style>

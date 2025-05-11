@@ -3,7 +3,6 @@ import { ref, computed } from 'vue';
 
 
 const carrinho = ref([]);
-
 const lancamentos =ref ([
    {
    id: "01",
@@ -107,7 +106,46 @@ const valorBooleano = ref(true);
  </script>
 
 <template>
-<body>
+  <body>
+      <header>
+            <div>
+                <div class="logo">
+                <h1>IFBooks</h1>
+                <p class="linha">Apreço <br> a leitura</p>
+                </div>
+                <div class="barra-de-pesquisa">
+                <p>Pesquisar</p>
+                <img src="/img/Search.png" alt="icone-de-lupa">
+                </div>
+            </div>
+            <div class="menu">
+                <nav>
+                <ul>
+                    <li>
+                        <a href="#">Termos</a>
+                    </li>
+                    <li>
+                        <a href="#">Equipe</a>
+                    </li>
+                    <li>
+                        <a href="#">Envio</a>
+                    </li>
+                    <li>
+                        <a href="#">Devoluções</a>
+                    </li>
+                    <li>
+                        <img src="/img/Download.png" alt="carrinho" >
+                    </li>
+                    <li>
+                        <span class="fa-solid fa-heart"></span>
+                    </li>
+                    <li>
+                        <span class="fa-solid fa-user"></span>
+                    </li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
   <main>
     <section class="inicio">
     <div class="texto">
@@ -143,7 +181,7 @@ const valorBooleano = ref(true);
    </ul>
  </div>
   </section>
-  <section class="lançamentos">
+  <section class="lancamentos">
    <div id="loja">
        <h2>Lançamentos</h2>
      <ul>
@@ -226,10 +264,70 @@ const valorBooleano = ref(true);
   </main>
 </body>
 </template>
+
 <style scoped>
-
-
-main section.inicio {
+/*------------------------------
+              TOPO
+------------------------------*/
+header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 1vw 0 2vw 0;
+    padding: 0 0 0.5vw 0;
+    border-bottom: 1px solid #27AE60;
+}
+header div{
+  display: flex;
+  justify-content: center;
+}
+header div.logo{
+    display: flex;
+    margin: 0 4vw 0 0;
+}
+header div.logo h1{
+    margin: 1vw 1vw 0 2vw;
+}
+header div.logo p.linha{
+    border-left: 1px solid #27AE60;
+    padding: 0 0 0 1vw;
+    margin: 1vw 0 1.5vw 0;
+    color: #27AE60;
+    font-size: 1.05rem;
+}
+header div.barra-de-pesquisa{
+    display: flex;
+    margin:  1vw 1vw 1vw 1vw;
+    padding: 10px;
+}
+header div.barra-de-pesquisa p{
+    color: #B8B8B8;
+    background-color: #F1F1F1;
+    padding:  0.7vw 30vw 0.7vw 1vw;  
+}
+header div.barra-de-pesquisa img{
+    background-color: #F1F1F1;
+    padding:  0.7vw 1vw 0.7vw 0vw;
+}
+header nav ul{
+    list-style: none;
+    display: flex;
+    margin: 0 5vw 0 0;
+}
+header nav ul li{
+    margin: 0 1.1vw 0 1.1vw;
+}
+header nav ul li a{
+    text-decoration: none;
+    color: #7B7881;
+}
+header nav ul li span{
+    color: #27AE60;
+    font-size: 1.3rem;
+    border-left: 1px solid #27AE60;
+    padding: 0 0 0 20px;
+}
+main section.inicio{
 display: flex;
 justify-content: center;
 margin: 2vw 4vw 2vw 4vw;
@@ -243,7 +341,7 @@ border: 1px solid rgba(39,174,96,1);
 background-color: white;
 color: rgba(39,174,96,1);
 }
-main section.inicio div.texto h2 {
+main section.inicio div.texto h2{
 margin: 1vw 0vw 0vw 0vw;
 font-weight:bold;
 font-size: 3rem;
@@ -258,19 +356,17 @@ border: 1px solid rgba(39,174,96,1);
 background-color:  rgba(39,174,96,1);
 color:white
 }
-main section.inicio div.imagem {
+main section.inicio div.imagem{
 margin: 0vw 0vw 5vw 4vw;
 }
-/*/////////////////////////////////////
-               FAIXA
-///////////////////////////////////*/
-
-
-main section.faixa div {
+/*------------------------------
+             FAIXA
+------------------------------*/
+main section.faixa div{
    border-top: 1px solid rgba(39,174,96,1);
    border-bottom:  1px solid rgba(39,174,96,1);
 }
-main section.faixa ul {
+main section.faixa ul{
    justify-content: center;
    display: flex;
    list-style: none;
@@ -285,36 +381,32 @@ main section.faixa li.borda{
    margin: 0vw 5vw 0vw 5vw;
    border-right: 1px solid rgba(147, 125, 194, 1);
 }
-
-
-main section.faixa li p {
+main section.faixa li p{
    font-weight: bold;
    font-size: 1rem;
    margin: 0px 30px 0px 0px;
 }
-main section.faixa li p img {
+main section.faixa li p img{
    height: 20px ;
    width: 20px;
   margin: 0px 10px 0px 0px;
 }
-/*/////////////////////////////
-        LANÇAMENTOS
-/////////////////////////////*/
-
-
-section.lançamentos h2{
+/*------------------------------
+          LANÇAMENTOS
+------------------------------*/
+section.lancamentos h2{
    margin: 4vw 6vw 4vw 10vw;
    font-weight: bold;
    font-size: 2rem;
    color: black;
 }
-section.lançamentos ul {
+section.lancamentos ul{
    display: flex;
    flex-wrap: wrap;
    justify-content: space-between;
    margin:4vw 7vw 4vw 6vw;
 }
-section.lançamentos li {
+section.lancamentos li{
    box-sizing: border-box;
    width: 20%;
    margin: 2vw 1vw 0vw 0;
@@ -322,39 +414,38 @@ section.lançamentos li {
    white-space: nowrap;
    list-style: none;
 }
-section.lançamentos img{
+section.lancamentos img{
    width: 15vw;
    height: 20vw;
 }
-section.lançamentos ul button{
+section.lancamentos ul button{
    padding: 10px 6vw 10px 6vw;
    border: 1px solid rgba(39,174,96,1);
    background-color:  rgba(39,174,96,1);
    color:white; 
 }
-section.lançamentos li p{
+section.lancamentos li p{
    margin: 8px;
 }
-section.lançamentos li p.titulo{
+section.lancamentos li p.titulo{
    font-weight: bold;
    font-size: 1.2rem;
 }
-section.lançamentos li p.autor{
+section.lancamentos li p.autor{
    color: rgb(147, 146, 148);
 }
-section.lançamentos li p.preco{
+section.lancamentos li p.preco{
    font-weight: bold;
    font-size: 1.2rem;
 }
-section.lançamentos li p.preco i{
+section.lancamentos li p.preco i{
    color : rgba(39,174,96,1);
    margin: 0 0 0 6vw;
 }
-/*////////////////////////////////////
-             CARRINHO 
-////////////////////////////////////*/
-
-section.carrinho div.classificacao h2 {
+/*------------------------------
+           CARRINHO 
+------------------------------*/
+section.carrinho div.classificacao h2{
     color: rgba(39,174,96,1);
     font-size: 2.3em;
     font-weight: bold;
@@ -420,13 +511,13 @@ section.carrinho div.classificacao a{
     border-radius: 3px;
     padding: 10px 50px 10px 50px;
 }
-section.carrinho div.classificacao p {
+section.carrinho div.classificacao p{
     margin: 5vw 10vw 5vw 10vw;
 }
 section.carrinho div.tabelas {
    display: flex;
 }
-section.carrinho div.total form {
+section.carrinho div.total form{
     display: flex;
     margin: 1vw 10vw 1vw 8vw;
 }
@@ -445,8 +536,7 @@ section.carrinho div.total form label input{
  padding:1.1vw 4vw 1.1vw 4vw;
  margin: 1vw 1vw 1vw 2vw;
 }
-
-section.carrinho div.resumo-compra {
+section.carrinho div.resumo-compra{
   border: 1px solid #000000;
   border-radius: 5px;
   padding: 2vw 2vw 2vw 2vw;
@@ -454,27 +544,23 @@ section.carrinho div.resumo-compra {
   margin: 1vw 1vw 1vw 10vw;
   font-family: Arial, sans-serif;
 }
-
-section.carrinho div.resumo-compra h3 {
+section.carrinho div.resumo-compra h3{
   font-size: 1.2rem;
   font-weight: bold;
   margin-bottom: 1vw;
 }
-
-section.carrinho div.resumo-compra .linha {
+section.carrinho div.resumo-compra div.linha{
   display: flex;
   justify-content: space-between;
   margin-bottom: 1vw;
 }
-
-section.carrinho div.resumo-compra .total {
+section.carrinho div.resumo-compra .total{
   font-weight: bold;
   border-top: 1px solid #ccc;
   padding-top: 1vw;
   margin-top: 1vw;
 }
-
-section.carrinho div.resumo-compra .botao-pagamento {
+section.carrinho div.resumo-compra button.botao-pagamento{
   background-color: rgba(39,174,96,1);
   color: white;
   border: none;
@@ -484,5 +570,5 @@ section.carrinho div.resumo-compra .botao-pagamento {
   margin-top: 1vw;
   cursor: pointer;
   font-size: 1.1rem;
-}
+  }
 </style>

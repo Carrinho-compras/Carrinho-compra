@@ -146,123 +146,147 @@ const valorBooleano = ref(true);
                 </nav>
             </div>
         </header>
-  <main>
-    <section class="inicio">
-    <div class="texto">
-      <p class="autor">
-       <button> Autor de Abril</button>
-      </p>
-      <h2>
-        Eric-Emanuel Schmitt
-      </h2>
-      <p class="informacao">
-        Eric-Emmanuel Schmitt has been awarded more than 20 <br> literary prizes and distinctions, and in 2001 he received the<br> title of Chevalier des Arts et des Lettres. His books have been <br> translated into over 40 languages.
-      </p>
-      <p>
-       <button>Acessar página do livro</button>
-      </p>
-    </div>
-    <div class="imagem">
-      <img src="/img/schmitt.png" alt="schmitt">
-    </div>
-  </section>
-  <section class="faixa">
- <div>
-   <ul>
-       <li class="borda">
-        <p><img src="/img/caminhao.png" alt="caminhao">Frete grátis para SC</p>
-       </li>
-       <li class="borda">
-           <p><img src="/img/estrela.png" alt="estrela">Livros recomendados</p>
-       </li>
-       <li>
-           <p><img src="/img/livro.png" alt="livro">Mais vendidos</p>
-       </li>
-   </ul>
- </div>
-  </section>
-  <section class="lancamentos">
-   <div id="loja">
-       <h2>Lançamentos</h2>
-     <ul>
-       <li v-for="livro in lancamentos" :key="livro.id">
-        <p> <img :src="livro.capa" alt="" width="200" height="200"></p>
-        <p>{{ capa }}</p>
-        <p class="titulo">{{ livro.titulo }}</p>
-        <p class="autor">{{ livro.autor }}</p>
-        <p class="preco">{{ "R$" + livro.preco }}<i class="fa-solid fa-heart"></i></p>
-        <button class="botao" @click="adicionarlancamentos(livro)">compra</button>
-       </li>
-     </ul>  
-   </div>
-  </section>
-  <section class="carrinho" v-if="carrinho.length > 0">
-   <div class="classificacao">
-       <h2>Carrinho</h2>
-       <ul class="tabela">
-           <li>
-               Título
-           </li>
-           <li>
-                Quantidade
-           </li>
-           <li>
-                Subtotal
-           </li>
-       </ul>
-       <div class="compra" v-for="book in carrinho" :key="book.id">
-      <p>
-        <img :src="book.capa" alt="" width="150" height="200">
-      </p>
-      <p class="texto">
-        <p class="titulo"> {{ book.titulo }}</p>
-        <p class="autor">{{ book.autor }}</p>
-       <p class="preco">R$ {{ book.preco.toFixed(2) }}</p> 
-      </p>
-      <p class="quantidade">
-        <button @click="decrementar(book)">-</button>
-        {{ book.quantidade }}
-        <button @click="incrementar(book)">+</button>
-      </p>
-      <p class="subTotal">
-         R$ {{ subTotal(book).toFixed(2) }}
-      </p>
-   </div>
-       <p>
-            <a href="#loja">Voltar para loja</a>
-        </p>
-   </div>
-   <div class="tabelas">
-      <div class="total">
-<form>
- <label for="name">
- <input type="text" id="name" name="user_name">
-</label>
- <p>
-    <input type="submit" value="Inserir Cupom">
- </p>
-</form>
-   </div>
-      <div class="resumo-compra">
-  <h3>Total da Compra</h3>
-  <div class="linha">
-    <span>Produtos:</span>
-    <span>R$ {{ totalProdutos.toFixed(2) }}</span>
-  </div>
-  <div class="linha">
-    <span>Frete:</span>
-    <span>Grátis</span>
-  </div>
-  <div class="linha total">
-    <span>Total:</span>
-    <span>R$ {{ totalProdutos.toFixed(2) }}</span>
-  </div>
-  <button class="botao-pagamento">Ir para o pagamento</button>
-   </div>
-   </div>
-  </section>
-  </main>
-</body>
+        <main>
+          <section class="inicio">
+            <div class="texto">
+              <p class="autor">
+                 <button> Autor de Abril</button>
+              </p>
+              <h2>
+                Eric-Emanuel Schmitt
+              </h2>
+              <p class="informacao">
+                Eric-Emmanuel Schmitt has been awarded more than 20 <br> literary prizes and distinctions, and in 2001 he received the<br> title of Chevalier des Arts et des Lettres. His books have been <br> translated into over 40 languages.
+              </p>
+              <p>
+                <button>Acessar página do livro</button>
+              </p>
+            </div>
+            <div class="imagem">
+              <img src="/img/schmitt.png" alt="schmitt">
+            </div>
+          </section>
+          <section class="faixa">
+            <div>
+              <ul>
+                <li class="borda">
+                  <p><img src="/img/caminhao.png" alt="caminhao">Frete grátis para SC</p>
+                </li>
+                <li class="borda">
+                  <p><img src="/img/estrela.png" alt="estrela">Livros recomendados</p>
+                </li>
+                <li>
+                  <p><img src="/img/livro.png" alt="livro">Mais vendidos</p>
+                </li>
+              </ul>
+             </div>
+          </section>
+          <section class="lancamentos">
+              <div id="loja">
+               <h2>Lançamentos</h2>
+               <ul>
+                <li v-for="livro in lancamentos" :key="livro.id">
+                  <p> <img :src="livro.capa" alt="" width="200" height="200"></p>
+                  <p>{{ capa }}</p>
+                  <p class="titulo">{{ livro.titulo }}</p>
+                  <p class="autor">{{ livro.autor }}</p>
+                  <p class="preco">{{ "R$" + livro.preco }}<i class="fa-solid fa-heart"></i></p>
+                  <button class="botao" @click="adicionarlancamentos(livro)">compra</button>
+                </li>
+               </ul>  
+              </div>
+          </section>
+          <section class="carrinho" v-if="carrinho.length > 0">
+              <div class="classificacao">
+                <h2>Carrinho</h2>
+                <ul class="tabela">
+                  <li>
+                    Título
+                  </li>
+                  <li>
+                    Quantidade
+                  </li>
+                  <li>
+                    Subtotal
+                  </li>
+                </ul>
+                <div class="compra" v-for="book in carrinho" :key="book.id">
+                  <p>
+                    <img :src="book.capa" alt="" width="150" height="200">
+                  </p>
+                  <p class="texto">
+                    <p class="titulo"> {{ book.titulo }}</p>
+                    <p class="autor">{{ book.autor }}</p>
+                    <p class="preco">R$ {{ book.preco.toFixed(2) }}</p> 
+                  </p>
+                  <p class="quantidade">
+                    <button @click="decrementar(book)">-</button>
+                    {{ book.quantidade }}
+                    <button @click="incrementar(book)">+</button>
+                  </p>
+                  <p class="subTotal">
+                    R$ {{ subTotal(book).toFixed(2) }}
+                  </p>
+                </div>
+                <p>
+                  <a href="#loja">Voltar para loja</a>
+                </p>
+              </div>
+              <div class="tabelas">
+                <div class="total">
+                  <form>
+                    <label for="name">
+                      <input type="text" id="name" name="user_name">
+                    </label>
+                    <p>
+                      <input type="submit" value="Inserir Cupom">
+                    </p>
+                  </form>
+                </div>
+                <div class="resumo-compra">
+                  <h3>Total da Compra</h3>
+                  <div class="linha">
+                   <span>Produtos:</span>
+                   <span>R$ {{ totalProdutos.toFixed(2) }}</span>
+                  </div>
+                  <div class="linha">
+                    <span>Frete:</span>
+                    <span>Grátis</span>
+                  </div>
+                  <div class="linha total">
+                    <span>Total:</span>
+                     <span>R$ {{ totalProdutos.toFixed(2) }}</span>
+                  </div>
+                  <button class="botao-pagamento">Ir para o pagamento</button>
+                </div>
+              </div>
+          </section>
+        </main>
+        <footer>
+            <div class="informacoes">
+              <div class="redes-sociais">
+                <p>IFbooks</p>
+                <ul>
+                  <li><span class="fa-brands fa-square-facebook"></span></li>
+                  <li><span class="fa-brands fa-square-instagram"></span></li>
+                  <li><span class="fa-brands fa-square-twitter"></span></li>
+                </ul>
+              </div>
+              <div class="contato">
+                <h2>Contato</h2>
+                <p> <img src="/img/phone.png" alt="telefone-img"> +55 47 40045263 </p>
+                <p> <span class="fa-solid fa-clock"></span> 8h às 23h - Seg a Sex</p>
+                <p> <span class="fa-solid fa-envelope"></span> contato@ifbooks.com</p>
+                <ul>
+                    <li><img src="/img/Paypal-Logo.png" alt="img-paypal"></li>
+                    <li><img src="/img/MasterCard-Logo.png" alt="img-mastercard"></li>
+                    <li><img src="/img/VISA-Logo.png" alt="img-visa"></li>
+                </ul>
+              </div>
+            </div>
+            <p class="direitos-autorais">© Alguns direitos reservados. IFbooks 2025. </p>
+        </footer>
+  </body>
 </template>
 
 <style scoped>
@@ -571,4 +595,73 @@ section.carrinho div.resumo-compra button.botao-pagamento{
   cursor: pointer;
   font-size: 1.1rem;
   }
+/*------------------------------
+             RODAPÉ 
+------------------------------*/
+footer{
+    background: #27AE60;
+    color: white;
+    padding: 0 0 2vw 0;
+}
+footer div.informacoes{
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(255, 255, 255, 1);
+}
+footer div{
+    padding: 2vw 2vw 2vw 2vw;
+}
+footer div.informacoes div.redes-sociais{
+    margin: 0 0 0 6vw;
+}
+footer div.informacoes div.redes-sociais p{
+    padding: 0 0 0.2vw 2.6vw;
+    font-size: 1.3rem;
+    color: rgba(255, 255, 255, 1);
+}
+footer div.informacoes div.redes-sociais ul{
+    list-style: none;
+    display: flex; 
+}
+footer div.informacoes div.redes-sociais ul li span{
+    font-size: 1.8rem;
+    padding: 10px;
+    color: rgba(255, 255, 255, 1);
+}
+footer div.informacoes div.contato{
+    margin: 0 0 0 45vw;
+}
+footer div.informacoes div.contato h2{
+    font-size: 1.3rem;
+    font-weight: 500;
+    padding: 0 0 1.5vw 0;
+}
+footer div.informacoes div.contato p{
+    color: rgba(255, 255, 255, 0.8);
+    padding: 0 0 1vw 0;
+    font-size: 1.1rem;
+}
+footer div.informacoes div.contato p span{
+    padding: 0 10px 0 0 ;
+    color: rgba(255, 255, 255, 0.8);
+}
+footer div.informacoes div.contato ul{
+    list-style: none;
+    display: flex;
+    padding: 2vw 6vw 0 0 ;
+}
+footer div.informacoes div.contato ul li{
+    padding: 0 30px 0 0;
+}
+footer div.informacoes div.contato ul li img{
+   width: 120%;
+   height: 90%;
+   border-radius: 4px;
+}
+footer p.direitos-autorais{
+    text-align: center;
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.6);
+    padding: 1.5vw 0 0 0;
+}
 </style>

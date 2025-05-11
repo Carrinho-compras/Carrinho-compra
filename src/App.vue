@@ -103,6 +103,10 @@ const totalProdutos = computed(() => {
   }, 0);
 });
 const valorBooleano = ref(true);
+
+const quantidade = computed(() => {
+  return carrinho.value.reduce((total, item) => total + item.quantidade, 0);
+});
  </script>
 
 <template>
@@ -134,7 +138,10 @@ const valorBooleano = ref(true);
                         <a href="#">Devoluções</a>
                     </li>
                     <li>
-                        <img src="/img/Download.png" alt="carrinho" >
+                        <a href="#carrinho">
+                          <span class="contador" v-if="quantidade > 0">{{ quantidade }}</span>
+                          <img src="/img/Download.png" alt="carrinho">
+                        </a>
                     </li>
                     <li>
                         <span class="fa-solid fa-heart"></span>
@@ -196,7 +203,7 @@ const valorBooleano = ref(true);
                </ul>  
               </div>
           </section>
-          <section class="carrinho" v-if="carrinho.length > 0">
+          <section class="carrinho" v-if="carrinho.length > 0" id="carrinho">
               <div class="classificacao">
                 <h2>Carrinho</h2>
                 <ul class="tabela">
@@ -307,31 +314,35 @@ header div{
 }
 header div.logo{
     display: flex;
-    margin: 0 4vw 0 0;
+    margin: 0 6vw 0 6vw;
 }
 header div.logo h1{
-    margin: 1vw 1vw 0 2vw;
+    margin: 1.3vw 1vw 0 2vw;
+    font-size: 1.3rem;
 }
 header div.logo p.linha{
     border-left: 1px solid #27AE60;
     padding: 0 0 0 1vw;
     margin: 1vw 0 1.5vw 0;
     color: #27AE60;
-    font-size: 1.05rem;
 }
 header div.barra-de-pesquisa{
     display: flex;
     margin:  1vw 1vw 1vw 1vw;
-    padding: 10px;
+    justify-items: center;
+    padding: 10px 10px 0 10px;
+    background-color: #F1F1F1;
 }
 header div.barra-de-pesquisa p{
     color: #B8B8B8;
     background-color: #F1F1F1;
-    padding:  0.7vw 30vw 0.7vw 1vw;  
+    text-align: center;
+    padding: 0 15vw 0 0;
 }
 header div.barra-de-pesquisa img{
     background-color: #F1F1F1;
-    padding:  0.7vw 1vw 0.7vw 0vw;
+    width: 50%;
+    height: 50%;
 }
 header nav ul{
     list-style: none;
@@ -344,6 +355,7 @@ header nav ul li{
 header nav ul li a{
     text-decoration: none;
     color: #7B7881;
+    display: flex;
 }
 header nav ul li span{
     color: #27AE60;
@@ -351,6 +363,12 @@ header nav ul li span{
     border-left: 1px solid #27AE60;
     padding: 0 0 0 20px;
 }
+header nav ul li span.contador {
+  font-size: 1rem;
+}
+/*------------------------------
+          CONTEÚDO
+------------------------------*/
 main section.inicio{
 display: flex;
 justify-content: center;
@@ -602,6 +620,7 @@ footer{
     background: #27AE60;
     color: white;
     padding: 0 0 2vw 0;
+    margin: 20vw 0 0 0;
 }
 footer div.informacoes{
     display: flex;
@@ -615,7 +634,7 @@ footer div.informacoes div.redes-sociais{
     margin: 0 0 0 6vw;
 }
 footer div.informacoes div.redes-sociais p{
-    padding: 0 0 0.2vw 2.6vw;
+    padding: 0 0 0.2vw 3.6vw;
     font-size: 1.3rem;
     color: rgba(255, 255, 255, 1);
 }
@@ -624,7 +643,7 @@ footer div.informacoes div.redes-sociais ul{
     display: flex; 
 }
 footer div.informacoes div.redes-sociais ul li span{
-    font-size: 1.8rem;
+    font-size: 1.6rem;
     padding: 10px;
     color: rgba(255, 255, 255, 1);
 }
@@ -632,7 +651,7 @@ footer div.informacoes div.contato{
     margin: 0 0 0 45vw;
 }
 footer div.informacoes div.contato h2{
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     font-weight: 500;
     padding: 0 0 1.5vw 0;
 }
@@ -660,7 +679,7 @@ footer div.informacoes div.contato ul li img{
 }
 footer p.direitos-autorais{
     text-align: center;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     color: rgba(255, 255, 255, 0.6);
     padding: 1.5vw 0 0 0;
 }

@@ -1,5 +1,5 @@
 <script setup>
-import { ref  } from 'vue';
+import { ref, computed } from 'vue';
 
 
 const carrinho = ref([]);
@@ -9,69 +9,101 @@ const lancamentos =ref ([
    id: "01",
    titulo: "Chain of Iron: Volume 2",
    autor: "Cassandra Clare",
-   preco :"R$23.24",
+   preco :23.24,
    capa:"https://m.media-amazon.com/images/I/81IP261kwlL.jpg",
+   quantidade: 1,
    },
    {
    id: "02",
    titulo: "Chain of Thorns",
    autor: "Cassandra Clare",
-   preco :"R$23.24",
+   preco :23.24,
    capa:"https://m.media-amazon.com/images/I/91PtVqr8spL.jpg",
+   quantidade: 1,
    },
    {
    id: "03",
    titulo: "City of Fallen Angels",
    autor: "Cassandra Clare",
-   preco :"R$13.94",
+   preco :13.94,
    capa:"https://m.media-amazon.com/images/I/81KL1LCy4bL._UF894,1000_QL80_.jpg",
+   quantidade: 1,
    },
    {
    id: "04",
    titulo: "Nona the Ninth",
    autor: "Cassandra Clare",
-   preco :"R$16.84",
+   preco :16.84,
    capa:"https://m.media-amazon.com/images/I/81SiB5KufiL._UF894,1000_QL80_.jpg",
+   quantidade: 1,
    },
    {
    id: "05",
    titulo: "Harlem Shuffle",
    autor: "Colson Whitehead",
-   preco :"R$26.92",
+   preco :26.92,
    capa:"https://m.media-amazon.com/images/I/81ZPFCh0xML.jpg",
+   quantidade: 1,
    },
    {
    id: "06",
    titulo: "Two Old Women",
    autor: "Velma Wallis",
-   preco :"R$13.95",
+   preco :13.95,
    capa:"https://m.media-amazon.com/images/I/81Yo0MecUrL.jpg",
+   quantidade: 1,
    },
    {
    id: "07",
    titulo: "Carrie Soto Is Back",
    autor: "Taylor Jenkins Reid",
-   preco :"R$26.04",
+   preco :26.04,
    capa:"https://thumb.spokesman.com/wdxMerykWELlZzs-g_JW0iILVis=/2500x2500/smart/media.spokesman.com/photos/2022/08/19/62fd217156308.image.jpg",
+   quantidade: 1,
    },
    {
    id: "08",
    titulo: "Book Lovers",
    autor: "Emily Henry",
-   preco :"R$15.81",
+   preco :15.81,
    capa:"https://m.media-amazon.com/images/I/71Xy4AL7jKL._AC_UF1000,1000_QL80_.jpg",
+   quantidade: 1,
    },
 ]);
 
 function adicionarlancamentos(book) {
-   carrinho.value.push(book);
- }
- function removerlancamentos(book){ 
-   const index = carrinho.value.findIndex((p) => p.id == book.id);
-   if (index !== -1) {
-      carrinho.value.splice(index,1);
-   }
- }
+  const existente = carrinho.value.find(p => p.id === book.id);
+  if (existente) {
+    existente.quantidade++;
+  } else {
+    carrinho.value.push({ ...book }); // cria cópia do livro
+  }
+}
+
+ function incrementar(book) {
+  book.quantidade++
+}
+
+function decrementar(book) {
+  book.quantidade--
+  if (book.quantidade <= 0) {
+    const index = carrinho.value.findIndex(p => p.id === book.id)
+    if (index !== -1) {
+      carrinho.value.splice(index, 1)
+    }
+  }
+}
+
+function subTotal(book) {
+   return book.preco * book.quantidade;
+}
+
+const totalProdutos = computed(() => {
+  return carrinho.value.reduce((soma, item) => {
+    return soma + (item.preco * item.quantidade);
+  }, 0);
+});
+const valorBooleano = ref(true);
  </script>
 
 <template>
@@ -116,20 +148,17 @@ function adicionarlancamentos(book) {
        <h2>Lançamentos</h2>
      <ul>
        <li v-for="livro in lancamentos" :key="livro.id">
-        <p v-for="imagem in lancamentos" :key="imagem.id"></p>
         <p> <img :src="livro.capa" alt="" width="200" height="200"></p>
         <p>{{ capa }}</p>
         <p class="titulo">{{ livro.titulo }}</p>
-        <p v-for="autor in lancamentos" :key="lancamentos.id"></p>
         <p class="autor">{{ livro.autor }}</p>
-        <p v-for="numero in lancamentos" :key="numero.id"></p>
-        <p class="preco">{{ livro.preco }}<i class="fa-solid fa-heart"></i></p>
+        <p class="preco">{{ "R$" + livro.preco }}<i class="fa-solid fa-heart"></i></p>
         <button class="botao" @click="adicionarlancamentos(livro)">compra</button>
        </li>
      </ul>  
    </div>
   </section>
-  <section class="Carrinho">
+  <section class="carrinho" v-if="carrinho.length > 0">
    <div class="classificacao">
        <h2>Carrinho</h2>
        <ul class="tabela">
@@ -143,28 +172,55 @@ function adicionarlancamentos(book) {
                 Subtotal
            </li>
        </ul>
-       <ul class="compra">
-        <li v-for = "book in carrinho" :key="book.id">
-            <p><img :src="book.capa" alt="" width="150" height="200">{{ capa }}</p>
-            <p class="texto">{{ book.autor }} <br>
-            {{ book.titulo }}<br>
-            {{ book.preco }}
-            <button class="botao" @click="removerlancamentos(book)">-</button></p>
-        </li>
-       </ul>
+       <div class="compra" v-for="book in carrinho" :key="book.id">
+      <p>
+        <img :src="book.capa" alt="" width="150" height="200">
+      </p>
+      <p class="texto">
+        <p class="titulo"> {{ book.titulo }}</p>
+        <p class="autor">{{ book.autor }}</p>
+       <p class="preco">R$ {{ book.preco.toFixed(2) }}</p> 
+      </p>
+      <p class="quantidade">
+        <button @click="decrementar(book)">-</button>
+        {{ book.quantidade }}
+        <button @click="incrementar(book)">+</button>
+      </p>
+      <p class="subTotal">
+         R$ {{ subTotal(book).toFixed(2) }}
+      </p>
+   </div>
        <p>
             <a href="#loja">Voltar para loja</a>
         </p>
    </div>
-   <div class="total">
+   <div class="tabelas">
+      <div class="total">
 <form>
  <label for="name">
  <input type="text" id="name" name="user_name">
 </label>
  <p>
-    <input type="submit" value="Enviar Cupom">
+    <input type="submit" value="Inserir Cupom">
  </p>
 </form>
+   </div>
+      <div class="resumo-compra">
+  <h3>Total da Compra</h3>
+  <div class="linha">
+    <span>Produtos:</span>
+    <span>R$ {{ totalProdutos.toFixed(2) }}</span>
+  </div>
+  <div class="linha">
+    <span>Frete:</span>
+    <span>Grátis</span>
+  </div>
+  <div class="linha total">
+    <span>Total:</span>
+    <span>R$ {{ totalProdutos.toFixed(2) }}</span>
+  </div>
+  <button class="botao-pagamento">Ir para o pagamento</button>
+   </div>
    </div>
   </section>
   </main>
@@ -298,58 +354,135 @@ section.lançamentos li p.preco i{
              CARRINHO 
 ////////////////////////////////////*/
 
-section.Carrinho div.classificacao h2 {
+section.carrinho div.classificacao h2 {
     color: rgba(39,174,96,1);
-    font-size: 1.8rem;
+    font-size: 2.3em;
     font-weight: bold;
     margin-left: 10vw;
 }
-section.Carrinho div.classificacao ul.tabela{
+section.carrinho div.classificacao ul.tabela{
     display: flex;
     list-style: none;
     margin-left: 10vw;
     margin-right: 10vw;
     justify-content: center;
-    justify-content: space-between;
     border-bottom: 2px solid rgb(95, 219, 147);
 }
-section.Carrinho div.classificacao ul.tabela li{
-    font-size: 1.5;
+section.carrinho div.classificacao ul.tabela li{
+    font-size: 1.4rem;
     font-weight: bold;
     margin-bottom: 2vw;
     margin-top: 2vw;
+    padding: 0 15vw 0 10vw;
 }
-section.Carrinho div.classificacao ul.compra li{
+section.carrinho div.classificacao div.compra{
    display: flex;
+   border-bottom: 1px solid #BDBDBD;
+   margin-left: 10vw;
+   margin-right: 10vw;
 }
-section.Carrinho div.classificacao ul.compra p{
-   margin : 20px 1vw 20px 10vw;
+section.carrinho div.classificacao div.compra p{
+   margin : 40px 1vw 0px 1vw;
+}
+section.carrinho div.classificacao div.compra p.texto p.titulo{
+   font-size: 1.3rem;
+   font-weight: bold;
+   margin: 1%;
+}
+section.carrinho div.classificacao div.compra p.texto p.autor{
+   margin: 1%;
+   padding: 10px 0 10px 0;
+}
+section.carrinho div.classificacao div.compra p.texto p.preco{
+   margin: 1%;
+   font-weight: bold;
+   font-size: 1.1rem;
+}
+section.carrinho div.classificacao div.compra p.quantidade{
+   margin : 40px 26vw 20px 10vw;
+   border: 1px solid #000000;
+   padding: 10px 20px 10px 20px;
+   margin-bottom: 14vw;
    font-weight: bold;
 }
-section.Carrinho div.classificacao a{
+section.carrinho div.classificacao div.compra p.quantidade button{
+   border: none;
+   background: transparent;
+}
+section.carrinho div.classificacao div.compra p.subTotal{
+   font-size: 1.2rem;
+   font-weight: bold;
+}
+section.carrinho div.classificacao a{
     color: black;
     text-decoration: none;
     border: 1px solid black;
     border-radius: 3px;
-    padding: 10px 20px 10px 20px;
-}section.Carrinho div.classificacao p {
+    padding: 10px 50px 10px 50px;
+}
+section.carrinho div.classificacao p {
     margin: 5vw 10vw 5vw 10vw;
 }
-section.Carrinho div.total form {
-    display: flex;
+section.carrinho div.tabelas {
+   display: flex;
 }
-section.Carrinho div.total form p input{
+section.carrinho div.total form {
+    display: flex;
+    margin: 1vw 10vw 1vw 8vw;
+}
+section.carrinho div.total form p input{
    border: none;
    padding: 1vw 2vw 1vw 2vw;
-   margin: 1vw 1vw 1vw 2vw;
+   margin: 1vw 1vw 1vw 1vw;
    border-radius: 2px;
    background-color: rgba(39,174,96,1); 
    color: white;
+   font-size: 1.1rem;
 }
-section.Carrinho div.total form label input{
+section.carrinho div.total form label input{
  border-radius: 2px;
  border-color: black;
- padding:1vw 2vw 1vw 2vw;
+ padding:1.1vw 4vw 1.1vw 4vw;
  margin: 1vw 1vw 1vw 2vw;
+}
+
+section.carrinho div.resumo-compra {
+  border: 1px solid #000000;
+  border-radius: 5px;
+  padding: 2vw 2vw 2vw 2vw;
+  width: 400px;
+  margin: 1vw 1vw 1vw 10vw;
+  font-family: Arial, sans-serif;
+}
+
+section.carrinho div.resumo-compra h3 {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 1vw;
+}
+
+section.carrinho div.resumo-compra .linha {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1vw;
+}
+
+section.carrinho div.resumo-compra .total {
+  font-weight: bold;
+  border-top: 1px solid #ccc;
+  padding-top: 1vw;
+  margin-top: 1vw;
+}
+
+section.carrinho div.resumo-compra .botao-pagamento {
+  background-color: rgba(39,174,96,1);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  width: 100%;
+  margin-top: 1vw;
+  cursor: pointer;
+  font-size: 1.1rem;
 }
 </style>
